@@ -71,10 +71,15 @@ class TodoListViewController: SwipeTableViewController {
             if let color = categoryColor.darken(byPercentage: CGFloat(indexPath.row)/CGFloat(toDoItems!.count)){
                 cell.backgroundColor = color
                 cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+                cell.tintColor = ContrastColorOf(color, returnFlat: true)
+
             }
             
             }
             cell.accessoryType = item.done ? .checkmark : .none
+            guard let navBar = navigationController?.navigationBar else {
+                fatalError("Navigation controller doesn't exist.")
+            }
         } else {
             cell.textLabel?.text = "No items added."
         }
